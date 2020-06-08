@@ -31,7 +31,7 @@ def make_model(r_pl, temp, mass_fractions, mmw, atmosphere, haze_factor=10., pcl
     :param temp_model: Guillot or constant
     :return:
     """
-    print(f'Running model: r: {r_pl / nc.r_earth:1.1f}  t_eq:{temp:1.1f}  temp_model: {temp_model}...')
+    print(f'Running model: r: {r_pl / nc.r_earth:1.1f}  t_eq:{temp:1.1f}  temp_model: {temp_model}.')
 
     density = 1.33  # gr/cm³
     mass = 4. / 3. * np.pi * density * r_pl ** 3
@@ -106,7 +106,7 @@ def plot_spec(wl, transm_rad, r_pl, temp, pl_name):
     plt.ylabel(r'Transit radius ($\rm R_{Earth}$)')
     plt.title(f'{pl_name} Param: R={r_pl / nc.r_earth:1.2f} R_Earth,  T={temp:1.1f} K')
     plt.xlim(0.59, 5.0)
-    path = '../plots/'
+    path = 'plots/'
     filename = path + f'{pl_name}{r_pl / nc.r_earth:1.2f}_{temp:1.1f}.png'
     plt.savefig(filename, format='png')
     plt.clf()
