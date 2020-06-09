@@ -33,7 +33,8 @@ def make_model(r_pl, temp, mass_fractions, mmw, atmosphere, haze_factor=10., pcl
     """
     print(f'Running model: r: {r_pl / nc.r_earth:1.1f}  t_eq:{temp:1.1f}  temp_model: {temp_model}.')
 
-    density = 1.33  # gr/cm³
+    # density = 1.33  # gr/cm³ Mini Neptune
+    density = 5.51  # g/cm³ Earth density
     mass = 4. / 3. * np.pi * density * r_pl ** 3
 
     if planet_model:

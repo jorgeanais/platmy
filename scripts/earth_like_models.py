@@ -18,7 +18,7 @@ utils.set_abundance_file(abund_type)
 abunds, mmws = utils.get_PT_abundances_MMW(pressures, temperatures)
 
 # line_species = ['C2H2', 'CH4', 'CO', 'CO2', 'H2', 'H2O', 'H2S', 'HCN', 'NH3', 'OH', 'PH3', 'VO', 'O3', 'SO2', 'COS']
-line_species = ['C2H2', 'CH4', 'CO', 'CO2', 'H2', 'H2O', 'H2S', 'HCN', 'NH3', 'OH', 'PH3', 'VO', 'O3']
+line_species = ['C2H2', 'CH4', 'CO', 'CO2', 'H2', 'H2O', 'H2S', 'HCN', 'NH3', 'OH', 'PH3', 'VO']
 atmosphere = Radtrans(line_species=line_species,
                       rayleigh_species=['H2', 'He'],
                       continuum_opacities=['H2-H2', 'H2-He'],
@@ -27,7 +27,7 @@ atmosphere = Radtrans(line_species=line_species,
 # Set haze and pcloud parameters
 haze_factor = 10.
 pcloud = 0.01
-description = 'Earth-like test'
+description = f'Earth-like test using {abund_type} abundances and haze_factor={haze_factor} and pcloud={pcloud}'
 
 # Grid of models
 models = [(r, temp, abund, mmw, atmosphere, haze_factor, pcloud, description)
