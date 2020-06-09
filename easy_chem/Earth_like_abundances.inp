@@ -1,0 +1,130 @@
+###########################################################
+### EASY CHEM: LIST ATOM NAMES AND NUMBERFRACTION BELOW ###
+###########################################################
+H nfrac  = 0.00000056
+He nfrac = 0.00000524
+C nfrac  = 0.00037900
+N nfrac  = 0.78084000
+O nfrac  = 0.20946000
+Na nfrac = 0.00012832
+Mg nfrac = 0.00293955
+Al nfrac = 0.00020810
+Si nfrac = 0.00238936
+P nfrac  = 0.00001898
+S nfrac  = 0.00097338
+Cl nfrac = 0.00002335
+K nfrac  = 0.00000791
+Ca nfrac = 0.00016154
+Ti nfrac = 0.00000658
+V nfrac  = 0.00000063
+Fe nfrac = 0.00233497
+Ni nfrac = 0.00012254
+###########################################################
+###         LIST REACTANT SPECIES NAMES BELOW           ###
+###########################################################
+H
+H2
+He
+O
+C
+N
+Mg
+Si
+Fe
+S
+AL
+Ca
+Na
+Ni
+P
+K
+Ti
+CO
+OH
+SH
+N2
+O2
+SiO
+TiO
+SiS
+H2O
+C2
+CH
+CN
+CS
+SiC
+NH
+SiH
+NO
+SN
+SiN
+SO
+S2
+C2H
+HCN
+C2H2,acetylene
+CH4
+ALH
+ALOH
+AL2O
+CaOH
+MgH
+MgOH
+PH3
+CO2
+TiO2
+Si2C
+SiO2
+FeO
+NH2
+NH3
+CH2
+CH3
+H2S
+VO
+VO2
+NaCL
+KCL
+e-
+H+
+H-
+Na+
+K+
+Fe+
+He+
+Ca+
+PH2
+P2
+PS
+PO
+P4O6
+PH
+V
+VO(c)
+VO(L)
+MgSiO3(c)
+SiC(c)
+Fe(c)
+AL2O3(c)
+Na2S(c)
+KCL(c)
+Fe(L)
+SiC(L)
+MgSiO3(L)
+H2O(L)
+H2O(c)
+TiO(c)
+TiO(L)
+MgAl2O4(c)
+FeO(c)
+Fe2O3(c)
+Fe2SiO4(c)
+TiO2(c)
+TiO2(L)
+H3PO4(c)
+H3PO4(L)
+SO2
+COS
+###########################################################
+###########################################################
+###########################################################

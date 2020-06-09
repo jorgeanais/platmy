@@ -184,23 +184,42 @@ def read_abunds(path):
 
 def get_PT_abundances_MMW(pressure, temperature):
     """
-    Original function by Paul Molliere. It wraps the fortran program easy_chem.
+    This function wraps the fortran program easy_chem. Original code EASY_CHEM by Paul Molliere.
+    EASY CHEM is a clone of the Nasa Chemical equilibrium with applications software (CEA).
+    The code minimizes the the total Gibbs free energy of all possible species while conserving
+    the number of atoms of every atomic species. Given the pressure and temperature together with the
+    atomic composition of the gas the output code is the mass and number fraction of all possible
+    outcome species (atoms, ions, molecules) the resulting density, as well the adiabatic temperature
+    gradient of the gas mixture.
+
+    The atoms species abundances (numerical fraction) must be indicated in the abundances.inp file.
+    Standard_abundances.inp file has solar abundances as defined in Asplund et al. (2009), see table 1.
+
     :param pressure: pressure (bar)
     :param temperature:  temperature (K)
     :return: abundances, Mean Molecular Weights and densities (in cgs units)
              atmospheric mean molecular weight in amu
     """
+
     current_dir = os.getcwd()
     os.chdir(os.path.join(current_dir, 'easy_chem'))
     np.savetxt('PT_struct.dat', np.column_stack((pressure, temperature)))
     os.system('./call_easy_chem')
-    abunds = read_abunds('final_abund_all.dat')
+
+    try:
+        abunds = read_abunds('final_abund_all.dat')
+
+    except IndexError:
+        os.chdir(current_dir)
+        raise IndexError('call easy_chem failed')
+
     dat = np.genfromtxt('MMWs.dat')
     mmw = dat[:, 1]
     os.system('rm MMWs.dat')
     os.system('rm final_abund_all.dat')
     os.system('rm PT_struct.dat')
     os.chdir(current_dir)
+
     return abunds, mmw
 
 
@@ -232,16 +251,19 @@ def set_abundance_file(atype='std'):
     """
     Set the input abundances used by easy_chem program.
     `std` are the default one, `subsolar` refers to abundances
-    defined according to C/O= and  C/N= (File orginal from Jeremy)
-    :param atype:
+    defined according to C/O=0.28 and  C/N=4.09 (Cridland et al. 2016).
+
+    :param atype: string. Abundance type as defined below
     :return:
     """
     if atype == 'std':
         file = 'Standard_abundances.inp'
     elif atype == 'subsolar':
         file = 'Subsolar_abundances.inp'
+    elif atype == 'earthlike':
+        file = 'Earth_like_abundances.inp'
     else:
-        raise(KeyError, "Error: not valid option. It can be either `std` or `subsolar`")
+        raise(KeyError, "Error: not valid option.")
 
     current_dir = os.getcwd()
     os.chdir(os.path.join(current_dir, 'easy_chem'))

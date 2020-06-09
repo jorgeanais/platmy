@@ -1,9 +1,7 @@
 import multiprocessing as mp
-
 import numpy as np
 from petitRADTRANS import Radtrans
 from petitRADTRANS import nat_cst as nc
-
 from platmy import utils
 
 utils.check_folders()
