@@ -8,8 +8,8 @@ utils.check_folders()
 utils.clean_outputs()
 
 # Set parameters (R and T)
-radii = np.arange(1.5, 1.8, 0.2) * nc.r_earth
-temperatures = np.arange(1000., 1101., 100.)
+radii = np.arange(1.0, 2.1, 0.1) * nc.r_earth
+temperatures = np.arange(1000., 1501., 100.)
 pressures = 0.01 * np.ones_like(temperatures)
 
 # Compute mass fraction abundances according to numerical abundances in abundances.inp
