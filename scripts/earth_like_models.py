@@ -8,9 +8,9 @@ utils.check_folders()
 utils.clean_outputs()
 
 # Set parameters (R and T)
-radii = np.arange(1.0, 2.1, 0.1) * nc.r_earth
-temperatures = np.arange(1000., 1501., 100.)
-pressures = 0.01 * np.ones_like(temperatures)
+radii = np.arange(1.0, 1.6, 0.1) * nc.r_earth
+temperatures = np.arange(200., 1001., 50.)
+pressures = 1.0 * np.ones_like(temperatures)
 
 # Compute mass fraction abundances according to numerical abundances in abundances.inp
 abund_type = 'earthlike'
@@ -27,7 +27,7 @@ atmosphere = Radtrans(line_species=line_species,
 # Set haze and pcloud parameters
 haze_factor = 10.
 pcloud = 0.01
-description = f'Earth-like test using {abund_type} abundances and haze_factor={haze_factor} and pcloud={pcloud}'
+description = f'Earth-like using {abund_type} abundances and haze_factor={haze_factor} and pcloud={pcloud}'
 
 # Grid of models
 models = [(r, temp, abund, mmw, atmosphere, haze_factor, pcloud, description)

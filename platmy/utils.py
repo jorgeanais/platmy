@@ -31,7 +31,7 @@ def make_model(r_pl, temp, mass_fractions, mmw, atmosphere, haze_factor=10., pcl
     :param temp_model: Guillot or constant
     :return:
     """
-    print(f'Running model: r: {r_pl / nc.r_earth:1.1f}  t_eq:{temp:1.1f}  temp_model: {temp_model}.')
+    print(f'Running model: r: {r_pl / nc.r_jup:1.1f}  t_eq:{temp:1.1f}  temp_model: {temp_model}.')
 
     # density = 1.33  # gr/cm³ Mini Neptune
     density = 5.51  # g/cm³ Earth density
@@ -62,7 +62,7 @@ def make_model(r_pl, temp, mass_fractions, mmw, atmosphere, haze_factor=10., pcl
                            haze_factor=haze_factor, Pcloud=pcloud)
 
     wl = nc.c / atmosphere.freq / 1e-4
-    transm_rad = atmosphere.transm_rad / nc.r_earth
+    transm_rad = atmosphere.transm_rad / nc.r_jup
 
     t = Table([wl, transm_rad], names=('wl', 'transm_rad'), meta={'description': description})
     t.meta.update({'abundances': mass_fractions})
@@ -83,7 +83,7 @@ def make_model(r_pl, temp, mass_fractions, mmw, atmosphere, haze_factor=10., pcl
 
     datadir = 'gendata'
     extension = '.ecsv'
-    filename = f'{pl_name}{r_pl / nc.r_earth:1.2f}_{temp:1.1f}'
+    filename = f'{pl_name}{r_pl / nc.r_jup:1.2f}_{temp:1.1f}'
     outfile = os.path.join(datadir, filename + extension)
     t.write(outfile, format='ascii.ecsv', overwrite=True)
 
@@ -104,11 +104,11 @@ def plot_spec(wl, transm_rad, r_pl, temp, pl_name):
     plt.plot(wl, transm_rad)
     plt.xscale('log')
     plt.xlabel('Wavelength (microns)')
-    plt.ylabel(r'Transit radius ($\rm R_{Earth}$)')
-    plt.title(f'{pl_name} Param: R={r_pl / nc.r_earth:1.2f} R_Earth,  T={temp:1.1f} K')
+    plt.ylabel(r'Transit radius ($\rm R_{Jupiter}$)')
+    plt.title(f'{pl_name} Param: R={r_pl / nc.r_jup:1.2f} R_Jupiter,  T={temp:1.1f} K')
     plt.xlim(0.59, 5.0)
     path = 'plots/'
-    filename = path + f'{pl_name}{r_pl / nc.r_earth:1.2f}_{temp:1.1f}.png'
+    filename = path + f'{pl_name}{r_pl / nc.r_jup:1.2f}_{temp:1.1f}.png'
     plt.savefig(filename, format='png')
     plt.clf()
 
@@ -263,6 +263,10 @@ def set_abundance_file(atype='std'):
         file = 'Subsolar_abundances.inp'
     elif atype == 'earthlike':
         file = 'Earth_like_abundances.inp'
+    elif atype == '10x_std':
+        file = '10x_std_abun.inp'
+    elif atype == '10x_less_std':
+        file = '10x_less_std_abun.inp'
     else:
         raise(KeyError, "Error: not valid option.")
 
