@@ -180,7 +180,7 @@ def read_abunds(path):
             number = int(header[21 + i * 22:21 + (i + 1) * 22][0:3])
             ret[name] = dat[:, number]
 
-    return dict_to_list(ret)
+    return ret
 
 
 def get_PT_abundances_MMW(pressure, temperature):

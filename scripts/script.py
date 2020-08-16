@@ -4,6 +4,7 @@ from petitRADTRANS import Radtrans
 from petitRADTRANS import nat_cst as nc
 from platmy import utils
 
+# Check that folder structure is ok
 utils.check_folders()
 utils.clean_outputs()
 
